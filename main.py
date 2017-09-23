@@ -29,6 +29,7 @@ def init(username,password):
             password.send_keys(password)
             login = browser.find_element(By.ID, 'login_button');
             login.send_keys(Keys.RETURN);
+            time.sleep(5)
             break
         except:
             print('login error')
