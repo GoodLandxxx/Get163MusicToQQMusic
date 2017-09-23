@@ -143,12 +143,10 @@ if __name__ == '__main__':
     isName(Lname)
     # for i in listlist:
     #     gotoQQMusic(i)#传入列表
-    init(username,password)
-
-    i=0
-    while i<10:
-        gotoQQMusic(listlist[i],init())  # 传入列表
-        i+=1
+    initval = init(username,password)
+    
+    for  list in listlist:
+        gotoQQMusic(list,initval)  # 传入列表
     # getMusicList()
     # input = input(str);
     # if input == '1':
