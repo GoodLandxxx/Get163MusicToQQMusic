@@ -27,20 +27,14 @@ def init(username,password):
             password = browser.find_elements(By.CLASS_NAME, 'inputstyle')[1]
             username.send_keys(username)
             password.send_keys(password)
+            login = browser.find_element(By.ID, 'login_button');
+            login.send_keys(Keys.RETURN);
             break
         except:
             print('login error')
 
     return browser
 def gotoQQMusic(MusicList,browser):
-    while 1 :
-        try:
-            login = browser.find_element(By.ID, 'login_button');
-            login.send_keys(Keys.RETURN);
-            break
-        except :
-            print('error')
-
     time.sleep(1)
     id_songtext = browser.find_elements(By.CLASS_NAME, 'search_input__input')[1];
     MusicList.reverse();
