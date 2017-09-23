@@ -14,26 +14,21 @@ global SONGCOUNT #音乐总数
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
 browser = webdriver.Chrome()
-def init(username,password):
-    while 1:
-        try:
-            browser.get("https://y.qq.com/portal/search.html#page=1&searchid=1&remoteplace=txt.yqq.top&t=song&w=%E5%95%8A");
-            next = browser.find_elements(By.CLASS_NAME, 'top_login__link')[1]
-            next.send_keys(Keys.RETURN);
-            browser.switch_to.frame('frame_tips')
-            login_s = browser.find_element(By.ID, 'switcher_plogin')
-            login_s.send_keys(Keys.RETURN);
-            username = browser.find_elements(By.CLASS_NAME, 'inputstyle')[0]
-            password = browser.find_elements(By.CLASS_NAME, 'inputstyle')[1]
-            username.send_keys(username)
-            password.send_keys(password)
-            login = browser.find_element(By.ID, 'login_button');
-            login.send_keys(Keys.RETURN);
-            time.sleep(5)
-            break
-        except:
-            print('login error')
-
+#browser = webdriver.Chrome(chrome_options=chrome_options)#可用参数，chrome设置为不可见
+def init(Uusername,Ppassword):
+    browser.get("https://y.qq.com/portal/search.html#page=1&searchid=1&remoteplace=txt.yqq.top&t=song&w=%E5%95%8A");
+    next = browser.find_elements(By.CLASS_NAME, 'top_login__link')[1]
+    next.send_keys(Keys.RETURN);
+    browser.switch_to.frame('frame_tips')
+    login_s = browser.find_element(By.ID, 'switcher_plogin')
+    login_s.send_keys(Keys.RETURN);
+    username = browser.find_elements(By.CLASS_NAME, 'inputstyle')[0]
+    password = browser.find_elements(By.CLASS_NAME, 'inputstyle')[1]
+    username.send_keys(Uusername)
+    password.send_keys(Ppassword)
+    login = browser.find_element(By.ID, 'login_button');
+    login.send_keys(Keys.RETURN);
+    time.sleep(5)
     return browser
 def gotoQQMusic(MusicList,browser):
     time.sleep(1)
@@ -144,7 +139,8 @@ if __name__ == '__main__':
     username = input('输入你的QQ号码');
     password = input('输入你的密码');
     #print('正在爬取第' + str(SONGCOUNT) + "首：" + str1)
-    isName('图穹')
+    Lname = input('输入你要爬的网易云音乐的名字');
+    isName(Lname)
     # for i in listlist:
     #     gotoQQMusic(i)#传入列表
     init(username,password)
