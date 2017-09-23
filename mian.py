@@ -11,27 +11,30 @@ musicURL = []#要爬取取的歌单url
 musicInfo= []#已经爬到的歌曲信息 list[songName -- singer]
 listlist = [];#列中列 list[list[songName --singer]]
 global SONGCOUNT #音乐总数
-# chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument('--headless')
-# browser = webdriver.Chrome()
-def init():
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')
-    browser = webdriver.Chrome()
-    browser.get("https://y.qq.com/portal/search.html#page=1&searchid=1&remoteplace=txt.yqq.top&t=song&w=%E5%95%8A");
-    return browser
-def gotoQQMusic(MusicList,browser):
-    next = browser.find_elements(By.CLASS_NAME, 'top_login__link')[1]
-    while 1 :
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--headless')
+browser = webdriver.Chrome()
+def init(username,password):
+    while 1:
         try:
+            browser.get("https://y.qq.com/portal/search.html#page=1&searchid=1&remoteplace=txt.yqq.top&t=song&w=%E5%95%8A");
+            next = browser.find_elements(By.CLASS_NAME, 'top_login__link')[1]
             next.send_keys(Keys.RETURN);
             browser.switch_to.frame('frame_tips')
             login_s = browser.find_element(By.ID, 'switcher_plogin')
             login_s.send_keys(Keys.RETURN);
             username = browser.find_elements(By.CLASS_NAME, 'inputstyle')[0]
             password = browser.find_elements(By.CLASS_NAME, 'inputstyle')[1]
-            username.send_keys('987331847')
-            password.send_keys('JAVA19690401')
+            username.send_keys(username)
+            password.send_keys(password)
+            break
+        except:
+            print('login error')
+
+    return browser
+def gotoQQMusic(MusicList,browser):
+    while 1 :
+        try:
             login = browser.find_element(By.ID, 'login_button');
             login.send_keys(Keys.RETURN);
             break
@@ -142,10 +145,15 @@ if __name__ == '__main__':
     #get163Music('http://music.163.com/#/user/home?id=337786502')
     #str1='aa'
     SONGCOUNT=0;
+    print('没有加入登录失败判断，请确保密码正确')
+    username = input('输入你的帐号');
+    password = input('输入你的密码');
     #print('正在爬取第' + str(SONGCOUNT) + "首：" + str1)
     isName('图穹')
     # for i in listlist:
     #     gotoQQMusic(i)#传入列表
+    init(username,password)
+
     i=0
     while i<10:
         gotoQQMusic(listlist[i],init())  # 传入列表
