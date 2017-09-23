@@ -146,7 +146,7 @@ if __name__ == '__main__':
     #str1='aa'
     SONGCOUNT=0;
     print('没有加入登录失败判断，请确保密码正确')
-    username = input('输入你的帐号');
+    username = input('输入你的QQ号码');
     password = input('输入你的密码');
     #print('正在爬取第' + str(SONGCOUNT) + "首：" + str1)
     isName('图穹')
