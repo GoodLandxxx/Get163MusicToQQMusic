@@ -31,11 +31,10 @@ def init(Uusername,Ppassword):
     time.sleep(5)
     return browser
 def gotoQQMusic(MusicList,browser):
-    time.sleep(1)
-    id_songtext = browser.find_elements(By.CLASS_NAME, 'search_input__input')[1];
-    MusicList.reverse();
     for name in MusicList:
         try:
+            id_songtext = browser.find_elements(By.CLASS_NAME, 'search_input__input')[1];
+            MusicList.reverse();
             id_songtext.clear()
             id_songtext.send_keys(name)
             serach_btn = browser.find_elements(By.CLASS_NAME, 'search_input__btn')[1]
